@@ -1,0 +1,21 @@
+version: '3'
+
+services: 
+  d405_noetic:
+    image: everskyrube/realsense-d405:latest
+    container_name: d405_noetic
+    network_mode: host 
+    privileged: true
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - /etc/localtime:/etc/localtime:ro
+      - /dev/bus/usb:/dev/bus/usb
+    working_dir: /home/d405_ws
+    devices:
+      - /dev/dri:/dev/dri
+    environment:
+      - DISPLAY=$DISPLAY
+    shm_size: 32G
+    command: /bin/bash
+    stdin_open: true
+    
